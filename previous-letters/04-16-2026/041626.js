@@ -1,4 +1,5 @@
-document.addEventListener('click', () => {
+// Mobile-friendly audio unlocker (just in case you add audio to this page later)
+const unlockAudio = () => {
     const music = document.getElementById('bg-music');
     if (music) {
         music.play().then(() => {
@@ -6,7 +7,12 @@ document.addEventListener('click', () => {
             music.currentTime = 0;
         }).catch(() => {});
     }
-}, { once: true });
+    document.removeEventListener('click', unlockAudio);
+    document.removeEventListener('touchstart', unlockAudio);
+};
+
+document.addEventListener('click', unlockAudio, { once: true });
+document.addEventListener('touchstart', unlockAudio, { once: true });
 
 function showScreen(screenId) {
     if (screenId === 'screen-letter') {
