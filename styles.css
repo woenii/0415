@@ -47,6 +47,14 @@ h2 {
     color: #34495e;
 }
 
+h3 {
+    font-size: 18px;
+    font-weight: 500;
+    margin-bottom: 30px;
+    line-height: 1.4;
+    color: #34495e;
+}
+
 button {
     background-color: #8fa1b3;
     color: white;
