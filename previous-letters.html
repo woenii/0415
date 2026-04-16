@@ -14,15 +14,31 @@
     <div class="container">
         
         <div id="screen-previous" class="screen active">
-            
             <h2>previous letters</h2>
             
-            <div class="envelope-wrapper" onclick="showAnimationModal()">
-                <img src="/previous-letters/04-15-2026/041526-letter-cover.png" alt="041526 Letter" class="custom-envelope">
-                <p class="tap-hint">tap to open</p>
+            <div class="carousel-container">
+                
+                <button class="arrow-btn" onclick="prevLetter()">&#10094;</button>
+
+                <div class="letters-list" id="all-letters">
+                    
+                    <div class="envelope-wrapper carousel-item" data-date="041526" onclick="handleEnvelopeClick('04-15-2026', '041526')">
+                        <img src="/previous-letters/04-15-2026/041526-letter-cover.png" alt="041526 Letter" class="custom-envelope">
+                        <p class="tap-hint">tap to open 04/15/26</p>
+                    </div>
+
+                    <div class="envelope-wrapper carousel-item" data-date="041626" onclick="handleEnvelopeClick('04-16-2026', '041626')">
+                        <img src="/previous-letters/04-16-2026/041626-letter-cover.png" alt="041626 Letter" class="custom-envelope">
+                        <p class="tap-hint">tap to open 04/16/26</p>
+                    </div>
+
+                </div>
+
+                <button class="arrow-btn" onclick="nextLetter()">&#10095;</button>
+                
             </div>
 
-            <br><br>
+            <br>
             <button class="btn-secondary" onclick="window.location.href='index.html'">go back</button>
         </div>
 

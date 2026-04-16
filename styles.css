@@ -182,3 +182,53 @@ img {
     width: auto;
     padding: 5px;
 }
+
+/* --- NEW CSS FOR CAROUSEL --- */
+.carousel-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.arrow-btn {
+    background: none;
+    color: #8fa1b3;
+    border: none;
+    font-size: 30px;
+    cursor: pointer;
+    padding: 10px;
+    width: auto;
+    box-shadow: none;
+    transition: color 0.3s, transform 0.1s;
+    margin: 0;
+}
+
+.arrow-btn:active {
+    transform: scale(0.8);
+    color: #34495e;
+}
+
+.letters-list {
+    width: 260px; /* Keeps the arrows from jumping around */
+    min-height: 220px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.carousel-item {
+    display: none; /* Hides all items by default */
+    margin-top: 0;
+    animation: fadeIn 0.4s;
+}
+
+.carousel-item.active-item {
+    display: block; /* Shows only the active item */
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
