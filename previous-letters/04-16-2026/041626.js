@@ -1,5 +1,4 @@
-// Mobile-friendly audio unlocker (just in case you add audio to this page later)
-const unlockAudio = () => {
+document.addEventListener('click', () => {
     const music = document.getElementById('bg-music');
     if (music) {
         music.play().then(() => {
@@ -7,12 +6,7 @@ const unlockAudio = () => {
             music.currentTime = 0;
         }).catch(() => {});
     }
-    document.removeEventListener('click', unlockAudio);
-    document.removeEventListener('touchstart', unlockAudio);
-};
-
-document.addEventListener('click', unlockAudio, { once: true });
-document.addEventListener('touchstart', unlockAudio, { once: true });
+}, { once: true });
 
 function showScreen(screenId) {
     if (screenId === 'screen-letter') {

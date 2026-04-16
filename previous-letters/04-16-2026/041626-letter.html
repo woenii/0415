@@ -13,7 +13,7 @@
         <div id="screen-letter" class="screen active">
             <img src="041626-letter.png" alt="Letter" style="max-width: 100%;">
             
-            <audio id="bg-music" loop preload="auto">
+            <audio id="bg-music" loop>
                 <source src="/songs/sparks.mp3" type="audio/mpeg">
             </audio>
 
@@ -24,14 +24,16 @@
     </div>
 
     <script>
+        // Custom script just for the letter page to handle the music
         window.onload = () => {
             const music = document.getElementById('bg-music');
             if (!music) return;
 
-            // Try to autoplay (works on some Androids/Desktop)
+            music.volume = 0;
+            
+            // Try to play and fade in automatically
             music.play().then(() => {
                 let vol = 0;
-                music.volume = 0;
                 const fade = setInterval(() => {
                     if (vol < 1) {
                         vol += 0.02;
@@ -41,22 +43,11 @@
                     }
                 }, 100);
             }).catch(() => {
-                // iPhone/Mobile strict block caught. 
-                // We will play it the very first time she touches the screen to read/scroll.
-                const startMusic = () => {
-                    music.volume = 0.3; // Android/Desktop fallback (iOS ignores this anyway)
+                // If browser blocks autoplay, play on her first tap/scroll
+                document.addEventListener('click', () => {
+                    music.volume = 0.3;
                     music.play();
-                    
-                    // Remove listeners so it doesn't try to restart on every tap
-                    document.removeEventListener('touchstart', startMusic);
-                    document.removeEventListener('click', startMusic);
-                    document.removeEventListener('scroll', startMusic);
-                };
-
-                // Bind to every possible type of screen interaction
-                document.addEventListener('touchstart', startMusic, { once: true });
-                document.addEventListener('click', startMusic, { once: true });
-                document.addEventListener('scroll', startMusic, { once: true });
+                }, { once: true });
             });
         };
     </script>

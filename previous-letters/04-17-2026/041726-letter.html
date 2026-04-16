@@ -5,11 +5,46 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>0416 letter - kali</title>
     <link rel="icon" href="/kali-icon.jpg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="041726.css">
+    <style>
+        /* CSS just for the fade-out overlay */
+        #start-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #fcf9f2; /* Match this to your main background color */
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: opacity 1.5s ease;
+        }
+        .tap-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+            color: #6b5b53;
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% { opacity: 0.6; }
+            50% { opacity: 1; }
+            100% { opacity: 0.6; }
+        }
+    </style>
 </head>
 <body>
     <div class="container">
         
+        <div id="start-overlay">
+            <p class="tap-text">tap to read</p>
+        </div>
+
         <div id="screen-letter" class="screen active">
             <img src="041726-letter.png" alt="Letter" style="max-width: 100%;">
             
@@ -24,30 +59,37 @@
     </div>
 
     <script>
-        // Custom script just for the letter page to handle the music
         window.onload = () => {
             const music = document.getElementById('bg-music');
-            if (!music) return;
+            const overlay = document.getElementById('start-overlay');
+            
+            if (!music || !overlay) return;
 
             music.volume = 0;
-            
-            // Try to play and fade in automatically
-            music.play().then(() => {
-                let vol = 0;
-                const fade = setInterval(() => {
-                    if (vol < 1) {
-                        vol += 0.02;
-                        music.volume = Math.min(vol, 0.3);
-                    } else {
-                        clearInterval(fade);
-                    }
-                }, 100);
-            }).catch(() => {
-                // If browser blocks autoplay, play on her first tap/scroll
-                document.addEventListener('click', () => {
-                    music.volume = 0.3;
-                    music.play();
-                }, { once: true });
+
+            // Wait for the tap on the overlay
+            overlay.addEventListener('click', () => {
+                
+                // 1. Play the music and fade it in
+                music.play().then(() => {
+                    let vol = 0;
+                    const fade = setInterval(() => {
+                        if (vol < 0.3) { // Caps out at 0.3 volume
+                            vol += 0.02;
+                            music.volume = Math.min(vol, 0.3);
+                        } else {
+                            clearInterval(fade);
+                        }
+                    }, 100);
+                }).catch((e) => console.log("Audio play failed:", e));
+
+                // 2. Fade out the overlay to reveal the letter
+                overlay.style.opacity = '0';
+                
+                // 3. Remove the overlay from the DOM after the fade transition finishes
+                setTimeout(() => {
+                    overlay.style.display = 'none';
+                }, 1500); 
             });
         };
     </script>
