@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>0415 - kali</title>
+    <link rel="icon" href="kali-icon.jpg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="041526.css">
+</head>
+<body>
+    <div class="container">
+        
+        <div id="screen1" class="screen active">
+            <h1>hi my pretty kali :)</h1>
+            <button onclick="showScreen('screen2')">hello</button>
+        </div>
+
+        <div id="screen2" class="screen">
+            <h2>you've got a letter, <br>can you read it for me?</h2>
+            <button class="btn-secondary" onclick="showScreen('screen3')">no, i don't want to</button>
+        </div>
+
+        <div id="screen3" class="screen">
+            <img id="sad-pic" 
+                 src="/previous-letters/04-15-2026/static-cry.png" 
+                 data-animated="https://i.pinimg.com/originals/e8/b8/0f/e8b80f8f14f6227f65a97d50c5094943.gif"
+                 onclick="playGif()"
+                 style="cursor: pointer;">
+            <br>
+            <button onclick="playAndGo(this)">say okay, to wipe tears</button>
+        </div>
+
+        <div id="screen-main" class="screen">
+            <div class="envelope-wrapper" onclick="window.location.href='041526-letter.html'">
+                <img src="/previous-letters/04-15-2026/041526-letter-cover.png" alt="Letter Cover" class="custom-envelope">
+                <p class="tap-hint">tap to open</p>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="041526.js"></script>
+</body>
+</html>

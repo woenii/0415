@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>previous letters - kali</title>
+    <link rel="icon" href="kali-icon.jpg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        
+        <div id="screen-previous" class="screen active">
+            
+            <h2>previous letters</h2>
+            
+            <div class="envelope-wrapper" onclick="showAnimationModal()">
+                <img src="/previous-letters/04-15-2026/041526-letter-cover.png" alt="041526 Letter" class="custom-envelope">
+                <p class="tap-hint">tap to open</p>
+            </div>
+
+            <br><br>
+            <button class="btn-secondary" onclick="window.location.href='index.html'">go back</button>
+        </div>
+
+    </div>
+
+    <div id="animation-modal" class="modal-overlay hidden">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal()">✕</button>
+            
+            <h3><br>do you want to play the animation for this letter?</h3>
+            <button onclick="playWithAnimation()">yes, please</button>
+            <button class="btn-secondary" onclick="skipAnimation()">no, just the letter</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
