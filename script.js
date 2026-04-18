@@ -137,7 +137,7 @@ let selectedFile = "";
 
 // 1. Check which envelope was clicked
 function handleEnvelopeClick(folderName, fileName) {
-    if (fileName === "041626") {
+    if (fileName === "041626" || fileName === "041726") {
         // BYPASS THE MODAL: Go straight to the direct letter
         window.location.href = `/previous-letters/${folderName}/${fileName}-letter.html`;
     } else {
