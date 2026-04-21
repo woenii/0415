@@ -10,6 +10,10 @@ document.addEventListener("DOMContentLoaded", () => {
     const startDate = new Date("2026-04-15");
     const today = new Date();
 
+    let lettersData = [];
+    let totalToCheck = 0;
+    let checked = 0;
+
     function format(date) {
         const mm = String(date.getMonth() + 1).padStart(2, '0');
         const dd = String(date.getDate()).padStart(2, '0');
@@ -18,43 +22,72 @@ document.addEventListener("DOMContentLoaded", () => {
         return {
             compact: `${mm}${dd}${yy}`,
             folder: `${mm}-${dd}-20${yy}`,
-            display: `${mm}/${dd}/${yy}`
+            display: `${mm}/${dd}/${yy}`,
+            rawDate: new Date(date)
         };
     }
 
-    function createLetter(date) {
-        const { compact, folder, display } = format(date);
+    function tryLoadLetter(date) {
+        const { compact, folder, display, rawDate } = format(date);
 
         const isToday = date.toDateString() === today.toDateString();
-        if (isToday) return; // ❌ skip today's letter
+        if (isToday) return;
+
+        totalToCheck++;
 
         const img = new Image();
         img.src = `/previous-letters/${folder}/${compact}-letter-cover.png`;
 
         img.onload = () => {
+            lettersData.push({ compact, folder, display, rawDate, img });
+            checked++;
+            checkDone();
+        };
+
+        img.onerror = () => {
+            checked++;
+            checkDone();
+        };
+    }
+
+    function checkDone() {
+        if (checked === totalToCheck) {
+            renderLetters();
+        }
+    }
+
+    function renderLetters() {
+        container.innerHTML = "";
+        visibleEnvelopes = [];
+
+        // ✅ LATEST FIRST
+        lettersData.sort((a, b) => b.rawDate - a.rawDate);
+
+        lettersData.forEach(letter => {
             const div = document.createElement("div");
             div.className = "envelope-wrapper carousel-item";
-            div.setAttribute("data-date", compact);
-            div.onclick = () => handleEnvelopeClick(folder, compact);
+            div.setAttribute("data-date", letter.compact);
+            div.onclick = () => handleEnvelopeClick(letter.folder, letter.compact);
 
-            img.className = "custom-envelope";
-            div.appendChild(img);
+            letter.img.className = "custom-envelope";
+            div.appendChild(letter.img);
 
             const p = document.createElement("p");
             p.className = "tap-hint";
-            p.textContent = `tap to open ${display}`;
+            p.textContent = `tap to open ${letter.display}`;
             div.appendChild(p);
 
             container.appendChild(div);
             visibleEnvelopes.push(div);
+        });
 
-            updateCarousel();
-        };
+        currentIndex = 0;
+        updateCarousel();
     }
 
     let current = new Date(startDate);
     while (current <= today) {
-        createLetter(new Date(current));
+        tryLoadLetter(new Date(current));
         current.setDate(current.getDate() + 1);
     }
 });
