@@ -22,6 +22,18 @@
         </div>
 
     </div>
+    <div id="animation-modal" class="modal-overlay hidden">
+    <div class="modal-content">
+        <button class="modal-close" onclick="closeModal()">✕</button>
+
+        <h3 id="modal-title"><br>do you want to play the animation for this letter?</h3>
+
+        <div id="modal-actions">
+            <button onclick="playWithAnimation()">yes, please</button>
+            <button class="btn-secondary" onclick="skipAnimation()">no, just the letter</button>
+        </div>
+    </div>
+</div>
 
     <script src="script.js"></script>
 </body>
