@@ -37,13 +37,14 @@ window.onload = () => {
 };
 
 // --- 2. ENVELOPE SURPRISE LOGIC ---
+// --- 2. ENVELOPE SURPRISE LOGIC ---
 function triggerSurprise(wrapperElement) {
     const img = document.getElementById('envelope-img');
     const text = document.getElementById('envelope-text');
     const btn = document.getElementById('read-letter-btn');
 
-    // Swap to hug gif
-    if (img) img.src = "phone-hug.gif";
+    // 🌟 THE FIX: Adding the timestamp forces the GIF to play from the start!
+    if (img) img.src = "phone-hug.gif?v=" + new Date().getTime();
     
     // Update text and stop pulsing
     if (text) {
