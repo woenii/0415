@@ -8,9 +8,9 @@ window.onload = () => {
         music.volume = 0;
 
         overlay.addEventListener('click', () => {
-            // Play music and fade it in
-            // ---> ADD THIS LINE HERE <---
-            music.currentTime = 5; // Starts the song at 5 seconds
+            
+            // Starts the song at 5 seconds
+            music.currentTime = 5; 
 
             // Play music and fade it in
             music.play().then(() => {
@@ -36,19 +36,7 @@ window.onload = () => {
     }
 };
 
-// --- 2. GLOBAL MOBILE AUDIO FIX ---
-document.addEventListener('click', () => {
-    const music = document.getElementById('bg-music');
-    if (music) {
-        music.play().then(() => {
-            music.pause();
-            music.currentTime = 0;
-        }).catch(() => {});
-    }
-}, { once: true });
-
-
-// --- 3. ENVELOPE SURPRISE LOGIC ---
+// --- 2. ENVELOPE SURPRISE LOGIC ---
 function triggerSurprise(wrapperElement) {
     const img = document.getElementById('envelope-img');
     const text = document.getElementById('envelope-text');
@@ -73,7 +61,7 @@ function triggerSurprise(wrapperElement) {
     }, 3000); 
 }
 
-// --- 4. NEXT PAGE LOGIC ---
+// --- 3. NEXT PAGE LOGIC ---
 function turnPage() {
     const page1 = document.getElementById('page-1-container');
     const page2 = document.getElementById('page-2-container');
