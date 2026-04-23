@@ -120,10 +120,12 @@ let selectedFolder = "";
 let selectedFile = "";
 
 function handleEnvelopeClick(folderName, fileName) {
-    if (fileName !== "041526") {
-        window.location.href = `/previous-letters/${folderName}/${fileName}-letter.html`;
-    } else {
+    // Check if it IS one of the special dates first
+    if (fileName === "041526" || fileName === "042326") {
         openSpecificModal(folderName, fileName);
+    } else {
+        // For all other dates, skip the modal
+        window.location.href = `/previous-letters/${folderName}/${fileName}-letter.html`;
     }
 }
 

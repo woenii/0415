@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>0423 - kali</title>
+    <link rel="icon" href="/kali-icon.jpg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="042326.css">
+</head>
+<body>
+    <div class="container">
+        
+        <div id="screen-main" class="screen active">
+            <div class="envelope-wrapper" onclick="triggerSurprise(this)">
+                <img id="envelope-img" src="042326-letter-cover.png" alt="Letter Cover" class="custom-envelope">
+                <p id="envelope-text" class="tap-hint">tap to open</p>
+            </div>
+            
+            <button id="read-letter-btn" style="display: none; margin: 20px auto 0 auto;" onclick="window.location.href='042326-letter.html'">
+                click to read the letter
+            </button>
+        </div>
+
+    </div>
+
+    <script src="042326.js"></script>
+</body>
+</html>

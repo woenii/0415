@@ -1,0 +1,105 @@
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700;1,900&display=swap');
+
+body {
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: 600;
+    background-color: #faf8f5;
+    color: #333;
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    overflow: hidden;
+}
+
+.container {
+    width: 100%;
+    max-width: 375px; 
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.screen {
+    display: none;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.screen.active {
+    display: block;
+    opacity: 1;
+}
+
+h1 {
+    font-size: 28px;
+    font-weight: 600;
+    margin-bottom: 30px;
+    color: #2c3e50;
+}
+
+h2 {
+    font-size: 22px;
+    font-weight: 500;
+    margin-bottom: 30px;
+    line-height: 1.4;
+    color: #34495e;
+}
+
+button {
+    background-color: #8fa1b3;
+    color: white;
+    border: none;
+    padding: 16px 32px;
+    font-size: 18px;
+    border-radius: 30px;
+    cursor: pointer;
+    margin: 10px;
+    width: 80%;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    transition: transform 0.1s;
+    touch-action: manipulation; 
+}
+
+button:active {
+    transform: scale(0.95);
+}
+
+.btn-secondary {
+    background-color: #e0e0e0;
+    color: #555;
+}
+
+img {
+    max-width: 100%;
+}
+
+.envelope-wrapper {
+    position: relative;
+    margin-top: 60px;
+    cursor: pointer;
+}
+
+.tap-hint {
+    font-size: 14px;
+    color: #888;
+    margin-top: 30px;
+    font-style: italic;
+    animation: pulse 2s infinite;
+}
+
+.custom-envelope {
+    width: 100%;
+    max-width: 320px;
+    border-radius: 8px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+    display: block;
+    margin: 0 auto;
+}
+
+@keyframes pulse {
+    0% { opacity: 0.5; }
+    50% { opacity: 1; }
+    100% { opacity: 0.5; }
+}

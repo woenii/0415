@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>0423 letter - kali</title>
+    <link rel="icon" href="/kali-icon.jpg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="042326.css">
+    <style>
+        /* CSS just for the fade-out overlay */
+        #start-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #fcf9f2; /* Match this to your main background color */
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: opacity 1.5s ease;
+        }
+        .tap-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+            color: #6b5b53;
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% { opacity: 0.6; }
+            50% { opacity: 1; }
+            100% { opacity: 0.6; }
+        }
+        
+        /* Added a class to space out the letter pages nicely */
+        .letter-page {
+            max-width: 100%;
+            display: block;
+            margin: 0 auto 20px auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        
+        <div id="start-overlay">
+            <p class="tap-text">tap to read</p>
+        </div>
+
+        <div id="screen-letter" class="screen active">
+            
+            <div id="page-1-container">
+                <img src="042326-letter-page1.png" alt="Letter Page 1" class="letter-page">
+                <br>
+                <button onclick="turnPage()">next page</button>
+            </div>
+            
+            <div id="page-2-container" style="display: none; opacity: 0; transition: opacity 0.8s ease;">
+                <img src="042326-letter-page2.png" alt="Letter Page 2" class="letter-page">
+                <br><br>
+                <button class="btn-secondary" onclick="window.location.href='../../index.html'">go back</button>
+            </div>
+            
+            <audio id="bg-music" loop>
+                <source src="/songs/lalim-by-mateo.mp3" type="audio/mpeg">
+            </audio>
+
+        </div>
+
+    </div>
+
+    <script src="042326.js"></script>
+</body>
+</html>
